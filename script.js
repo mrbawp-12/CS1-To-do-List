@@ -79,26 +79,11 @@ function toggleTask(id) {
     });
     
     saveTasks();
+    displayTasks();
     
-    const task = tasks.find(function(t) {
-        return t.id === id;
-    });
-    
+    const task = tasks.find(t => t.id === id);
     if (task.completed) {
-        displayTasks();
-        
-        setTimeout(function() {
-            tasks = tasks.filter(function(t) {
-                return t.id !== id;
-            });
-            saveTasks();
-            displayTasks();
-            
-            //thông báo đã hoàn thành
-            showNotification(`Đã hoàn thành <strong>"${task.text}"</strong>`, 'complete');
-        }, 500);
-    } else {
-        displayTasks();
+        showNotification(`Đã hoàn thành <strong>"${task.text}"</strong>`, 'complete');
     }
 }
 
